@@ -1,8 +1,5 @@
 <template>
   <v-card tile flat light class="printable" style="margin-left: auto; margin-right: auto">
-    <h1>NPC Print View (WIP)</h1>
-    <h2>NPC ID: {{ this.npc.ID }}</h2>
-    <h3>NPC Name: {{this.npc.Name}}</h3>
       <v-container fluid>
         <v-row dense align="top">
           <v-col cols="auto">
@@ -11,6 +8,100 @@
           </v-col>
         </v-row>
         
+        <v-row dense align="center" justify="space-around" class="mt-n5 mb-1">
+          <v-col cols="auto">
+            <span class="font-weight-bold overline pr-3">HULL</span>
+            <div class="ml-4 mt-n3" style="position: relative; width: max-content">
+              <v-icon x-large style="margin-right: -3px !important">mdi-hexagon-outline</v-icon>
+              <div class="heading h2 icon-overlap" v-html="this.npc.Stats.Hull" />
+            </div>
+          </v-col>
+          <v-col cols="auto">
+            <span class="font-weight-bold overline pr-3">AGI</span>
+            <div class="ml-4 mt-n3" style="position: relative; width: max-content">
+              <v-icon x-large style="margin-right: -3px !important">mdi-hexagon-outline</v-icon>
+              <div class="heading h2 icon-overlap" v-html="this.npc.Stats.Agility" />
+            </div>
+          </v-col>
+          <v-col cols="auto">
+            <span class="font-weight-bold overline pr-3">SYS</span>
+            <div class="ml-4 mt-n3" style="position: relative; width: max-content">
+              <v-icon x-large style="margin-right: -3px !important">mdi-hexagon-outline</v-icon>
+              <div class="heading h2 icon-overlap" v-html="this.npc.Stats.Systems" />
+            </div>
+          </v-col>
+          <v-col cols="auto">
+            <span class="font-weight-bold overline pr-3">ENG</span>
+            <div class="ml-4 mt-n3" style="position: relative; width: max-content">
+              <v-icon x-large style="margin-right: -3px !important">mdi-hexagon-outline</v-icon>
+              <div class="heading h2 icon-overlap" v-html="this.npc.Stats.Engineering" />
+            </div>
+          </v-col>
+          <v-col cols="auto" class="mt-4 ml-4">
+            <v-icon size="40">{{ this.npc.SizeIcon }}</v-icon>
+          </v-col>
+          <v-col>
+            <v-divider vertical />
+          </v-col>
+        </v-row>
+
+        <v-row dense justify="space-between" align="start" class="mt-n4">
+          <v-col class="text-center">
+            <div style="line-height: 0" class="overline mb-4">STRUCTURE</div>
+            <div>
+              <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">cci-structure</v-icon>
+              <b
+                class="d-inline-block flavor-text font-weight-bold mb-n2"
+                v-html="`/${this.npc.Stats.Structure}`"
+              />
+            </div>
+          </v-col>
+          <v-col cols="auto">
+            <v-row dense no-gutters justify="center">
+              <v-col cols="auto" class="text-center">
+                <div style="line-height: 0" class="overline mb-4 mr-6">HP</div>
+                <div>
+                  <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">
+                    mdi-hexagon-outline
+                  </v-icon>
+                  <b
+                    class="d-inline-block flavor-text font-weight-bold mb-n2"
+                    v-html="`/${this.npc.Stats.HP}`"
+                  />
+                </div>
+              </v-col>
+              <v-col v-if="this.npc.Stats.Armor" cols="auto" class="text-center mb-1" align-self="end">
+                <div style="line-height: 0" class="overline mb-4 ml-2">ARMOR</div>
+                <div class="heading h2 mt-n4 mr-n2">
+                  <v-icon class="mt-n1 mr-n1">mdi-shield</v-icon>
+                  {{ this.npc.Stats.Armor }}
+                </div>
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-spacer />
+          <v-col class="text-center">
+            <div style="line-height: 0" class="overline mb-4 mr-2">STRESS</div>
+            <div>
+              <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">cci-reactor</v-icon>
+              <b
+                class="d-inline-block flavor-text font-weight-bold mb-n2"
+                v-html="`/${this.npc.Stats.Stress}`"
+              />
+            </div>
+          </v-col>
+          <v-col class="text-center">
+            <div style="line-height: 0" class="overline mb-4 mr-6">HEAT</div>
+            <div>
+              <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">mdi-fire</v-icon>
+              <b
+                class="d-inline-block flavor-text font-weight-bold mb-n2"
+                v-html="`/${this.npc.Stats.HeatCapacity}`"
+              />
+            </div>
+          </v-col>
+        </v-row>
+
       </v-container>
   </v-card>
 </template>
@@ -58,6 +149,50 @@ export default Vue.extend({
 .printable {
   background-color: white !important;
   width: 210mm;
+}
+
+.caption {
+  font-size: 14px;
+}
+
+.icon-overlap {
+  position: absolute;
+  top: 1.5px;
+  left: 1px;
+  width: 100%;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  text-align: center;
+}
+
+.p-stat {
+  font-size: 34px;
+}
+
+fieldset {
+  padding: 0 4px;
+  height: 100%;
+  border-radius: 3px;
+  border-color: var(--v-grey-lighten2);
+}
+
+.oc-border {
+  border: 1px solid;
+  border-color: darkgrey;
+  border-radius: 2px;
+}
+
+.bordered-block {
+  border: 1px solid grey;
+  border-radius: 2px;
+  padding: 4px;
+  height: 100%;
+  position: relative;
+  padding-bottom: 12px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  display: block;
+  page-break-inside: avoid !important;
 }
 
 @page {
