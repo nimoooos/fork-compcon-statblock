@@ -3,12 +3,20 @@
     <h1>NPC Print View (WIP)</h1>
     <h2>NPC ID: {{ this.npc.ID }}</h2>
     <h3>NPC Name: {{this.npc.Name}}</h3>
+      <v-container fluid>
+        <v-row dense align="top">
+          <v-col cols="auto">
+            <div class="overline my-n2 grey--text">Tier {{this.npc.Tier}} {{ this.npc.Class.Name }}</div>
+            <div class="heading h2 mt-n4 font-weight-bolder">{{ this.npc.Name }}</div>
+          </v-col>
+        </v-row>
+        
+      </v-container>
   </v-card>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import NpcCard from '../NpcCard.vue'
 import { getModule } from 'vuex-module-decorators'
 import { NpcStore } from '@/store'
 import { Npc } from '@/class'
@@ -17,7 +25,7 @@ import { Npc } from '@/class'
 export default Vue.extend({
   name: 'combined-print',
   components: {
-    NpcCard
+    
   },
   props: {
     npcId: {
