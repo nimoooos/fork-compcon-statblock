@@ -6,7 +6,7 @@
       <v-container fluid>
         <v-row dense align="top">
           <v-col cols="auto">
-            <div class="overline my-n2 grey--text">Tier {{this.npc.Tier}} {{ this.npc.Class.Name }}</div>
+            <div class="overline my-n2 grey--text">Tier {{this.npc.Tier}} {{this.npc.Templates.map(template => template.Name).join(' ')}} {{ this.npc.Class.Name }}</div>
             <div class="heading h2 mt-n4 font-weight-bolder">{{ this.npc.Name }}</div>
           </v-col>
         </v-row>
@@ -19,7 +19,7 @@
 import Vue from 'vue'
 import { getModule } from 'vuex-module-decorators'
 import { NpcStore } from '@/store'
-import { Npc } from '@/class'
+import { Npc, NpcTemplate } from '@/class'
 
 
 export default Vue.extend({
