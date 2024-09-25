@@ -100,6 +100,57 @@
               />
             </div>
           </v-col>
+          <v-col class="text-center">
+            <div style="line-height: 0" class="overline mb-4 mr-2">STRESS</div>
+            <div>
+              <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">cci-reactor</v-icon>
+              <b
+                class="d-inline-block flavor-text font-weight-bold mb-n2"
+                v-html="`/${this.npc.Stats.Stress}`"
+              />
+            </div>
+          </v-col>
+          
+        </v-row>
+<!-- TODO: How does override and bonus work? Should this be coded in here? -->
+        <v-row dense>
+          <v-col>
+            <fieldset>
+              <legend class="caption font-weight-bold px-1">ACTIVATIONS</legend>
+              <div class="heading h2 text-center mt-n2">{{ this.npc.Stats.Activations }}</div>
+            </fieldset>
+          </v-col>
+          <v-col>
+            <fieldset>
+              <legend class="caption font-weight-bold px-1">SAVE TARGET</legend>
+              <div class="heading h2 text-center mt-n2">{{ this.npc.Stats.Save }}</div>
+            </fieldset>
+          </v-col>
+          <v-col>
+            <fieldset>
+              <legend class="caption font-weight-bold px-1">SPEED</legend>
+              <div class="heading h2 text-center mt-n2">{{ this.npc.Stats.Speed }}</div>
+            </fieldset>
+          </v-col>
+          <v-col>
+            <fieldset>
+              <legend class="caption font-weight-bold px-1">E-DEF</legend>
+              <div class="heading h2 text-center mt-n2">{{ this.npc.Stats.EDefense }}</div>
+            </fieldset>
+          </v-col>
+          <v-col>
+            <fieldset>
+              <legend class="caption font-weight-bold px-1">EVASION</legend>
+              <div class="heading h2 text-center mt-n2">{{ this.npc.Stats.Evade }}</div>
+            </fieldset>
+          </v-col>
+          <v-col>
+            <fieldset>
+              <legend class="caption font-weight-bold px-1">SENSORS</legend>
+              <div class="heading h2 text-center mt-n2">{{ this.npc.Stats.Sensor }}</div>
+            </fieldset>
+          </v-col>
+        </v-row>
         </v-row>
 
       </v-container>
