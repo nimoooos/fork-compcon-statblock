@@ -142,15 +142,14 @@
         <div class="overline mb-n2">FEATURES</div>
         <fieldset v-for="(item, i) in this.npc.Items" :key="`ftr_${i}`" style="position: relative; page-break-inside: avoid">
         <legend class="heading ml-1 px-2 mb-n2">{{ item.Name }} ({{'I'.repeat(item.Tier)}})</legend>
-        <div class="d-inline-block overline ml-2 my-n1">
+        <div class="d-inline-block overline ml-2 my-n2">
           {{ `//${item.Feature.OriginClass} - ${item.Feature.OriginSet} ${item.Feature.FeatureType}` }}
         </div>
-        <p v-if="item.Feature.FeatureType=='Weapon'" class="d-inline-block overline ml-2 my-n1">
-          {{ item.Feature.WeaponType }} | {{ item.Feature.Range.map(r=>r.Text).join(' ') }} | ATK: {{ item.Feature.AttackSummary(item.Tier) }} | {{ item.Feature.Damage(item.Tier).map(d=>d.Text).join(' ') }}
+        <p v-if="item.Feature.FeatureType=='Weapon'" class="d-inline-block overline ml-2 my-n2">
+          {{ `${item.Feature.WeaponType} | ${item.Feature.Range.map(r=>r.Text).join(' ')} | ATK: ${item.Feature.AttackSummary(item.Tier)} | ${item.Feature.Damage(item.Tier).map(d=>d.Text).join(' ')}` }}
         </p>
-        <v-spacer/>
-        <p v-if="item.Feature.FeatureType=='Tech'" class="d-inline-block overline ml-2 my-n1">
-         SENSORS {{ npc.Stats.Sensor }} | ATK: {{ item.Feature.AttackSummary(item.Tier) }}
+        <p v-if="item.Feature.FeatureType=='Tech'" class="d-inline-block overline ml-2 my-n2">
+          {{ `SENSORS: ${npc.Stats.Sensor} | ATK: ${item.Feature.AttackSummary(item.Tier)}` }}
         </p>
         <p v-html-safe="item.Feature.EffectByTier(item.Tier)" class="mx-1 mb-1" />
         <div class="text-right" style="position: absolute; top: 0; left: 0; right: 0">
