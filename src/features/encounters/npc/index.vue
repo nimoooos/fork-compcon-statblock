@@ -280,7 +280,6 @@ export default class NpcManager extends Vue {
   }
 
   printNpc(npc: Npc) {
-    console.log("Print NPC command received."+`pushing /printNpc/${npc.ID}`)
     this.$router.push(`/printNpc/${npc.ID}`)
   }
 
