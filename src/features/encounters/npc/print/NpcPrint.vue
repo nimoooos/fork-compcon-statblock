@@ -41,77 +41,64 @@
             <v-icon size="40">{{ this.npc.SizeIcon }}</v-icon>
           </v-col>
           <v-col>
-            <v-divider vertical />
+            <v-row dense justify="space-between" align="start" class="mt-n4">
+              <v-col cols="auto">
+                  <v-row dense no-gutters justify="center">
+                    <v-col cols="auto" class="text-center">
+                      <div style="line-height: 0" class="overline mb-4 mr-6">HP</div>
+                      <div>
+                        <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">
+                          mdi-hexagon-outline
+                        </v-icon>
+                        <b
+                          class="d-inline-block flavor-text font-weight-bold mb-n2"
+                          v-html="`/${this.npc.Stats.HP}`"
+                        />
+                      </div>
+                    </v-col>
+                    <v-col v-if="this.npc.Stats.Armor" cols="auto" class="text-center mb-1" align-self="end">
+                      <div style="line-height: 0" class="overline mb-4 ml-2">ARMOR</div>
+                      <div class="heading h2 mt-n4 mr-n2">
+                        <v-icon class="mt-n1 mr-n1">mdi-shield</v-icon>
+                        {{ this.npc.Stats.Armor }}
+                      </div>
+                    </v-col>
+                  </v-row>
+                </v-col>
+                <v-col class="text-center">
+                  <div style="line-height: 0" class="overline mb-4">STRUCTURE</div>
+                  <div>
+                    <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">cci-structure</v-icon>
+                    <b
+                      class="d-inline-block flavor-text font-weight-bold mb-n2"
+                      v-html="`/${this.npc.Stats.Structure}`"
+                    />
+                  </div>
+                </v-col>
+                <v-col class="text-center">
+                  <div style="line-height: 0" class="overline mb-4 mr-6">HEAT</div>
+                  <div>
+                    <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">mdi-fire</v-icon>
+                    <b
+                      class="d-inline-block flavor-text font-weight-bold mb-n2"
+                      v-html="`/${this.npc.Stats.HeatCapacity}`"
+                    />
+                  </div>
+                </v-col>
+                <v-col class="text-center">
+                  <div style="line-height: 0" class="overline mb-4 mr-2">STRESS</div>
+                  <div>
+                    <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">cci-reactor</v-icon>
+                    <b
+                      class="d-inline-block flavor-text font-weight-bold mb-n2"
+                      v-html="`/${this.npc.Stats.Stress}`"
+                    />
+                  </div>
+                </v-col>
+              </v-row>
           </v-col>
         </v-row>
 
-        <v-row dense justify="space-between" align="start" class="mt-n4">
-          <v-col class="text-center">
-            <div style="line-height: 0" class="overline mb-4">STRUCTURE</div>
-            <div>
-              <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">cci-structure</v-icon>
-              <b
-                class="d-inline-block flavor-text font-weight-bold mb-n2"
-                v-html="`/${this.npc.Stats.Structure}`"
-              />
-            </div>
-          </v-col>
-          <v-col cols="auto">
-            <v-row dense no-gutters justify="center">
-              <v-col cols="auto" class="text-center">
-                <div style="line-height: 0" class="overline mb-4 mr-6">HP</div>
-                <div>
-                  <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">
-                    mdi-hexagon-outline
-                  </v-icon>
-                  <b
-                    class="d-inline-block flavor-text font-weight-bold mb-n2"
-                    v-html="`/${this.npc.Stats.HP}`"
-                  />
-                </div>
-              </v-col>
-              <v-col v-if="this.npc.Stats.Armor" cols="auto" class="text-center mb-1" align-self="end">
-                <div style="line-height: 0" class="overline mb-4 ml-2">ARMOR</div>
-                <div class="heading h2 mt-n4 mr-n2">
-                  <v-icon class="mt-n1 mr-n1">mdi-shield</v-icon>
-                  {{ this.npc.Stats.Armor }}
-                </div>
-              </v-col>
-            </v-row>
-          </v-col>
-          <v-spacer />
-          <v-col class="text-center">
-            <div style="line-height: 0" class="overline mb-4 mr-2">STRESS</div>
-            <div>
-              <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">cci-reactor</v-icon>
-              <b
-                class="d-inline-block flavor-text font-weight-bold mb-n2"
-                v-html="`/${this.npc.Stats.Stress}`"
-              />
-            </div>
-          </v-col>
-          <v-col class="text-center">
-            <div style="line-height: 0" class="overline mb-4 mr-6">HEAT</div>
-            <div>
-              <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">mdi-fire</v-icon>
-              <b
-                class="d-inline-block flavor-text font-weight-bold mb-n2"
-                v-html="`/${this.npc.Stats.HeatCapacity}`"
-              />
-            </div>
-          </v-col>
-          <v-col class="text-center">
-            <div style="line-height: 0" class="overline mb-4 mr-2">STRESS</div>
-            <div>
-              <v-icon size="60" color="grey lighten-3" class="mr-n3 mt-n6">cci-reactor</v-icon>
-              <b
-                class="d-inline-block flavor-text font-weight-bold mb-n2"
-                v-html="`/${this.npc.Stats.Stress}`"
-              />
-            </div>
-          </v-col>
-          
-        </v-row>
 <!-- TODO: How does override and bonus work? Should this be coded in here? -->
         <v-row dense>
           <v-col>
