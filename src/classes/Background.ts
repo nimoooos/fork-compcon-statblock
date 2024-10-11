@@ -1,10 +1,10 @@
-import { Skill } from "@/class"
+import { Skill } from '@/class'
 
 interface IBackgroundData {
   id: string
   name: string
   description: string
-  skills?: String[]  // these are skill IDs
+  skills?: String[] // these are skill IDs
 }
 
 class Background {
@@ -13,7 +13,7 @@ class Background {
   public readonly Description: string
   public readonly LcpName: string
   public readonly InLcp: boolean
-  public readonly Skills: String[]  // these are skill IDs
+  public readonly Skills: String[] // these are skill IDs
 
   public constructor(data: IBackgroundData, packName?: string) {
     this.ID = data.id
@@ -23,7 +23,6 @@ class Background {
     this.InLcp = packName ? true : false
     data.skills ? (this.Skills = data.skills) : (this.Skills = [])
   }
-
 }
 
 export { Background, IBackgroundData }
