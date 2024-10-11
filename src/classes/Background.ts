@@ -4,7 +4,7 @@ interface IBackgroundData {
   id: string
   name: string
   description: string
-  skills?: Skill[]
+  skills?: String[]  // these are skill IDs
 }
 
 class Background {
@@ -13,7 +13,7 @@ class Background {
   public readonly Description: string
   public readonly LcpName: string
   public readonly InLcp: boolean
-  public readonly Skills: Skill[]
+  public readonly Skills: String[]  // these are skill IDs
 
   public constructor(data: IBackgroundData, packName?: string) {
     this.ID = data.id
