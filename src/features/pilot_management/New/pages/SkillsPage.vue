@@ -70,7 +70,7 @@ export default Vue.extend({
       } catch (error) {
         const errormsg = `Background "${this.pilot.Background}" not found.`
         console.error(errormsg)
-        Vue.prototype.$notify(errormsg,'error')
+        Vue.prototype.$notify(errormsg, 'error')
         return
       }
 
@@ -80,8 +80,9 @@ export default Vue.extend({
           return skillsList.find(sk => sk.ID === skId)
         })
 
-      if (suggestedSkills.length==0){
-        Vue.prototype.$notify(`Example triggers for background "${this.pilot.Background}" does not exist.`,'error')
+      if (suggestedSkills.length == 0) {
+        let notifmsg = `Example triggers for background "${this.pilot.Background}" does not exist.`
+        Vue.prototype.$notify(notifmsg, 'error')
         return
       }
 
@@ -90,7 +91,8 @@ export default Vue.extend({
         this.pilot.SkillsController.AddSkill(sgSk)
       })
 
-      Vue.prototype.$notify(`Skills successfully imported from ${this.pilot.Background}.`,'success')
+      let notifmsg = `Skills successfully imported from ${this.pilot.Background}.`
+      Vue.prototype.$notify(notifmsg, 'success')
     },
   },
   computed: {
