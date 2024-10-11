@@ -32,7 +32,7 @@
               <h3 v-if="e.InLcp" v-html-safe="e.LcpName" class="heading mb-2" />
               <p v-html-safe="e.Description" class="flavor-text" />
               <v-row class="skills">
-                <span style="margin: auto 0">Example Triggers:</span>
+                <span style="margin: auto 0">Example Triggers: <b v-if="!e.Skills[0]">Skill Profile Unknown</b></span>
                 <span v-for="(s) in e.Skills" v-html-safe="getSkillName(s)" class="skill"/>
               </v-row>
             </cc-titled-panel>

@@ -68,7 +68,7 @@ export default Vue.extend({
       try {
         backgroundList.find(bg => bg.Name === this.pilot.Background).Skills
       } catch (error) {
-        const errormsg = `Example triggers for background "${this.pilot.Background}" not found.`
+        const errormsg = `Background "${this.pilot.Background}" not found.`
         console.error(errormsg)
         Vue.prototype.$notify(errormsg,'error')
         return
@@ -79,6 +79,11 @@ export default Vue.extend({
         .Skills.map(skId => {
           return skillsList.find(sk => sk.ID === skId)
         })
+
+      if (suggestedSkills.length==0){
+        Vue.prototype.$notify(`Example triggers for background "${this.pilot.Background}" does not exist.`,'error')
+        return
+      }
 
       this.pilot.SkillsController.ClearSkills()
       suggestedSkills.forEach(sgSk => {
