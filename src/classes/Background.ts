@@ -21,7 +21,7 @@ class Background {
     this.Description = data.description
     this.LcpName = packName || 'LANCER Core Book'
     this.InLcp = packName ? true : false
-    this.Skills = data.skills
+    data.skills ? (this.Skills = data.skills) : (this.Skills = [])
   }
 
 }
