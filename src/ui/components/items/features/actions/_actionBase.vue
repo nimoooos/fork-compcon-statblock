@@ -24,7 +24,7 @@
       <div class="subtle--text overline mb-n2">Effect</div>
       <div v-html-safe="action.Detail" class="body-text stark--text" />
     </div>
-    <div v-if="action.Description">
+    <div v-if="action.Description && displayDescription">
       <div class="subtle--text overline mb-n2">Compendium Entry</div>
       <div v-html-safe="action.Description" class="body-text stark--text" />
     </div>
@@ -39,6 +39,11 @@ export default Vue.extend({
     action: {
       type: Object,
       required: true,
+    },
+    displayDescription: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
 })
