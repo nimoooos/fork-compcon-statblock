@@ -26,7 +26,7 @@
     </div>
     <div v-if="action.Description && displayDescription">
       <div class="subtle--text overline mb-n2">Compendium Entry</div>
-      <div v-html-safe="action.Description" class="body-text stark--text" />
+      <div v-html-safe="action.Description" class="flavor-text" />
     </div>
   </v-card-text>
 </template>
