@@ -33,6 +33,10 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export default class CCShortStringEditor extends Vue {
   @Prop({ type: String, required: false })
   readonly placeholder?: string
+  @Prop({ type: String, required: false, default: '' })
+  color?: string
+  @Prop({ type: String, required: false, default: '' })
+  boxModel?: string
   @Prop({ type: Boolean, required: false })
   readonly inline?: boolean
   @Prop({ type: Boolean })
