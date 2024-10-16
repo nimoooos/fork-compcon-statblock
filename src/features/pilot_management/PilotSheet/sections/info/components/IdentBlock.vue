@@ -9,7 +9,9 @@
       </v-col>
       <v-col cols="6" md="4" xl="3">
         <div class="overline mb-n3 subtle--text">NAME</div>
-        <cc-short-string-editor @set="pilot.Name = $event">{{ pilot.Name }}</cc-short-string-editor>
+        <cc-short-string-editor @set="pilot.Name = $event">
+          {{ pilot.Name }}
+        </cc-short-string-editor>
       </v-col>
       <v-col cols="6" md="4" xl="3">
         <div class="overline mb-n3 subtle--text">BACKGROUND</div>
