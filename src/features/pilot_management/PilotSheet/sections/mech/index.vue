@@ -9,7 +9,7 @@
     />
     <v-row no-gutters>
       <v-col cols="auto">
-        <cc-short-string-editor large before @set="mech.Name = $event">
+        <cc-short-string-editor playerMech color="light" @set="mech.Name = $event">
           <cc-title
             :small="small"
             :large="!small && mech.Name.length < 31"

@@ -2,7 +2,7 @@
   <v-fade-transition leave-absolute>
     <div v-if="!editing" key="str" :class="{ 'd-inline': inline }">
       <slot />
-      <v-btn outlined :x-small="!large" :color="color" :class="`fadeSelect ${boxModel} ${before ? 'before' : ''} ${large?'mt-n10':''}`" @click="edit()">
+      <v-btn outlined :x-small="!large&!playerMech" :color="color" :class="`fadeSelect ${boxModel} ${playerMech ? 'playerMech' : ''} ${large?'mt-n10':''}`" @click="edit()">
         <v-icon :small="!large">
           mdi-circle-edit-outline
         </v-icon>
@@ -42,7 +42,7 @@ export default class CCShortStringEditor extends Vue {
   @Prop({ type: Boolean })
   readonly large?: boolean
   @Prop({ type: Boolean })
-  readonly before?: boolean
+  readonly playerMech?: boolean
 
   newStr = ''
   editing = false
@@ -88,7 +88,7 @@ export default class CCShortStringEditor extends Vue {
   font-size: 1em;
   font-weight: bold;
 }
-.before {
+.playerMech {
   margin-top: -6rem;
 }
 </style>
