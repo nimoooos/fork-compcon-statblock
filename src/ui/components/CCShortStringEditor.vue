@@ -2,8 +2,8 @@
   <v-fade-transition leave-absolute>
     <div v-if="!editing" key="str" :class="{ 'd-inline': inline }">
       <slot />
-      <v-btn x-small outlined class="fadeSelect" @click="edit()">
-        <v-icon :dark="before" small :class="`${before ? 'mt-n12' : ''}`">
+      <v-btn :size="large?'large':'x-small'" outlined :color="large?'white':''" :class="`fadeSelect ${before ? 'before' : ''}`" @click="edit()">
+        <v-icon small >
           mdi-circle-edit-outline
         </v-icon>
       </v-btn>
@@ -83,6 +83,9 @@ export default class CCShortStringEditor extends Vue {
 .label {
   font-size: 1em;
   font-weight: bold;
+}
+.before {
+  margin-top: -6rem;
 }
 </style>
 

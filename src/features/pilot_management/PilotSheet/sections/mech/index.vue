@@ -14,9 +14,9 @@
             :small="small"
             :large="!small && mech.Name.length < 31"
             :color="color"
-            class="px-3 ml-n6"
+            class="pl-12"
           >
-            {{ mech.Name }}&emsp;
+            &nbsp;{{ mech.Name }}&emsp;
           </cc-title>
         </cc-short-string-editor>
         <div :class="`mt-n${small ? '3' : '6'}`">
