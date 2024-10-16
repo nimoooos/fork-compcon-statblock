@@ -19,8 +19,8 @@
         <span>
           <cc-background-selector
             :pilot="pilot"
-            small
-            class="d-inline fadeSelect ml-n1"
+            dossier
+            class="d-inline"
             @select="pilot.Background = $event"
           />
         </span>

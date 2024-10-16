@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-btn small tonal color="accent" class="ml-2 my-n2" @click="open()">
-      <v-icon :small="small" color="light">cci-orbit</v-icon>
+    <v-btn :small="small" :x-small="dossier" outlined :color="dossier?'dark':'secondary'" class="fadeSelect my-n2" @click="open()">
+      <v-icon :small="dossier">cci-orbit</v-icon>
     </v-btn>
     <cc-solo-dialog ref="dialog" fullscreen no-confirm title="Select Pilot Background">
       <cc-sidebar-view>
@@ -56,6 +56,12 @@ export default Vue.extend({
     small: {
       type: Boolean,
       required: false,
+      default: false,
+    },
+    dossier: { // set this to true when using in IdentBlock.vue
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   data: () => ({
