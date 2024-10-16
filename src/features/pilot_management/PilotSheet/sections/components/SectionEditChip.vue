@@ -3,10 +3,11 @@
     <cc-tooltip inline simple :content="label">
       <v-chip
         small
+        outlined
         label
         dark
         :class="{ fadeSelect: !highlight }"
-        :color="highlight ? 'warning' : 'pilot'"
+        :color="highlight ? 'warning' : 'grey lighten-3'"
         style="margin-bottom: 1px"
         @click="$emit('open-selector')"
       >
