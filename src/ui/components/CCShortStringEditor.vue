@@ -2,7 +2,7 @@
   <v-fade-transition leave-absolute>
     <div v-if="!editing" key="str" :class="{ 'd-inline': inline }">
       <slot />
-      <v-btn outlined :x-small="!large" :color="color" :class="`fadeSelect ${before ? 'before' : ''} ${large?'mt-n10':''} ${boxModel}`" @click="edit()">
+      <v-btn outlined :x-small="!large" :color="color" :class="`fadeSelect ${boxModel} ${before ? 'before' : ''} ${large?'mt-n10':''}`" @click="edit()">
         <v-icon :small="!large">
           mdi-circle-edit-outline
         </v-icon>
