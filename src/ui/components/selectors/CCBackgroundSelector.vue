@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-icon :small="small" color="secondary" @click="open()">cci-orbit</v-icon>
+    <v-btn small tonal color="accent" class="ml-2 my-n2" @click="open()">
+      <v-icon :small="small" color="light">cci-orbit</v-icon>
+    </v-btn>
     <cc-solo-dialog ref="dialog" fullscreen no-confirm title="Select Pilot Background">
       <cc-sidebar-view>
         <v-list-item
