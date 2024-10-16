@@ -1,7 +1,9 @@
 <template>
   <v-menu v-model="menu" offset-y :close-on-content-click="false">
     <template v-slot:activator="{ on }">
-      <v-icon small class="fadeSelect" v-on="on">mdi-circle-edit-outline</v-icon>
+      <v-btn outlined x-small class="fadeSelect ml-2" v-on="on">
+        <v-icon small>mdi-circle-edit-outline</v-icon>
+      </v-btn>
     </template>
     <v-card outlined>
       <v-card-text>
