@@ -409,7 +409,8 @@ export class CompendiumStore extends VuexModule {
   }
 
   @Action
-  public setVersions(lancerVer: string, ccVer: string): void {
+  @CatchErrorAsyncMethod()
+  public async setVersions(lancerVer: string, ccVer: string): Promise<void> {
     this.context.commit(SET_VERSIONS, { lancerVer, ccVer })
   }
 
