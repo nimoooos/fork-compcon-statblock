@@ -10,7 +10,7 @@ import Vue from 'vue'
  *
  * Usage:
  * ```ts
- * @CatchError()
+ * @CatchErrorAsyncMethod()
  * public async someAsyncMethod() {
  *   // Your method logic here
  * }
