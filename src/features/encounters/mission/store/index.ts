@@ -4,7 +4,7 @@ import { Mission, ActiveMission } from '@/class'
 import { IMissionData, IActiveMissionData } from '@/interface'
 import { loadData, saveDelta, deleteDataById, saveData } from '@/io/Data'
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
-import { CatchErrorAsyncMethod } from '@/util/CatchError'
+import { CatchError } from '@/util/CatchError'
 
 export const SAVE_DATA = 'SAVE_DATA'
 export const SET_DIRTY = 'SET_DIRTY'
@@ -213,81 +213,94 @@ export class MissionStore extends VuexModule {
   }
 
   @Action
+  @CatchError()
   public setMissionsDirty(): void {
     this.context.commit(SET_DIRTY)
   }
 
   @Action
+  @CatchError()
   public set_mission_dirty(): void {
     this.context.commit(SET_DIRTY)
   }
 
   @Action
+  @CatchError()
   public set_activemission_dirty(): void {
     this.context.commit(SET_DIRTY)
   }
 
   @Action
+  @CatchError()
   public saveMissionData(): void {
     this.context.commit(SAVE_DATA)
   }
 
   @Action
+  @CatchError()
   public cloneMission(payload: Mission): void {
     this.context.commit(CLONE_MISSION, payload)
   }
 
   @Action
+  @CatchError()
   public addMission(payload: Mission): void {
     this.context.commit(ADD_MISSION, payload)
   }
 
   @Action
+  @CatchError()
   public addActiveMission(payload: ActiveMission): void {
     this.context.commit(ADD_ACTIVE_MISSION, payload)
   }
 
   @Action
+  @CatchError()
   public delete_mission(payload: Mission): void {
     this.context.commit(DELETE_MISSION, payload)
   }
 
   @Action
+  @CatchError()
   public restore_mission(payload: Mission): void {
     this.context.commit(RESTORE_MISSION, payload)
   }
 
   @Action
+  @CatchError()
   public deleteMissionPermanent(payload: Mission): void {
     if (!payload.SaveController.IsDeleted) this.context.commit(DELETE_MISSION)
     this.context.commit(DELETE_MISSION_PERMANENT, payload)
   }
 
   @Action
+  @CatchError()
   public delete_activemission(payload: ActiveMission): void {
     this.context.commit(DELETE_ACTIVE_MISSION, payload)
   }
 
   @Action
+  @CatchError()
   public restore_activemission(payload: ActiveMission): void {
     this.context.commit(RESTORE_ACTIVE_MISSION, payload)
   }
 
   @Action
+  @CatchError()
   public deleteActiveMissionPermanent(payload: ActiveMission): void {
     if (!payload.SaveController.IsDeleted) this.context.commit(DELETE_ACTIVE_MISSION)
     this.context.commit(DELETE_ACTIVE_MISSION_PERMANENT, payload)
   }
 
   @Action({ rawError: true })
-  @CatchErrorAsyncMethod()
+  @CatchError()
   public async loadMissions() {
     const missionData = await loadData<IMissionData>('missions_v2.json')
     this.context.commit(LOAD_MISSIONS, missionData)
   }
 
   @Action({ rawError: true })
-  @CatchErrorAsyncMethod()
+  @CatchError()
   public async loadActiveMissions() {
     const missionData = await loadData<IActiveMissionData>('active_missions_v2.json')
     this.context.commit(LOAD_ACTIVE_MISSIONS, missionData)

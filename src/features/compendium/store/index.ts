@@ -45,7 +45,7 @@ import * as PlayerAction from '@/classes/Action'
 import { Background, IBackgroundData } from '@/classes/Background'
 import Vue from 'vue'
 import { Bond } from '@/classes/pilot/components/bond/Bond'
-import { CatchErrorAsyncMethod } from '@/util/CatchError'
+import { CatchError } from '@/util/CatchError'
 
 export const SET_VERSIONS = 'SET_VERSIONS'
 export const LOAD_DATA = 'LOAD_DATA'
@@ -276,8 +276,8 @@ export class CompendiumStore extends VuexModule {
     this.ContentPacks = [...this.ContentPacks]
   }
 
-  @Action
-  @CatchErrorAsyncMethod()
+  @Action({ rawError: true })
+  @CatchError()
   public async setPackActive(payload: { packID: string; active: boolean }): Promise<void> {
     this.context.commit(SET_PACK_ACTIVE, payload)
     await saveUserData(
@@ -286,8 +286,8 @@ export class CompendiumStore extends VuexModule {
     )
   }
 
-  @Action
-  @CatchErrorAsyncMethod()
+  @Action({ rawError: true })
+  @CatchError()
   public async installContentPack(pack: IContentPack): Promise<void> {
     if (this.packAlreadyInstalled(pack.id)) {
       console.info(`pack ${pack.manifest.name} [${pack.id}] already exists, deleting original...`)
@@ -301,8 +301,8 @@ export class CompendiumStore extends VuexModule {
     await this.refreshExtraContent()
   }
 
-  @Action
-  @CatchErrorAsyncMethod()
+  @Action({ rawError: true })
+  @CatchError()
   public async deleteContentPack(packID: string): Promise<void> {
     this.context.commit(DELETE_PACK, packID)
     await saveUserData(
@@ -312,8 +312,8 @@ export class CompendiumStore extends VuexModule {
     await this.refreshExtraContent()
   }
 
-  @Action
-  @CatchErrorAsyncMethod()
+  @Action({ rawError: true })
+  @CatchError()
   public async loadExtraContent(): Promise<void> {
     const content = await loadUserData('extra_content.json')
     try {
@@ -323,8 +323,8 @@ export class CompendiumStore extends VuexModule {
     }
   }
 
-  @Action
-  @CatchErrorAsyncMethod()
+  @Action({ rawError: true })
+  @CatchError()
   public async refreshExtraContent(): Promise<void> {
     await this.context.commit(CLEAR_PACKS)
 
@@ -409,12 +409,13 @@ export class CompendiumStore extends VuexModule {
   }
 
   @Action
-  @CatchErrorAsyncMethod()
+  @CatchError()
   public async setVersions(lancerVer: string, ccVer: string): Promise<void> {
     this.context.commit(SET_VERSIONS, { lancerVer, ccVer })
   }
 
   @Action
+  @CatchError()
   public setMissingContent(payload: any): void {
     this.context.commit(SET_MISSING_CONTENT, payload)
   }

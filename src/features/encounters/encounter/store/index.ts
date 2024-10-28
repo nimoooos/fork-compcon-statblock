@@ -4,7 +4,7 @@ import { Encounter } from '@/class'
 import { IEncounterData } from '@/interface'
 import { loadData, saveDelta, deleteDataById, saveData } from '@/io/Data'
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
-import { CatchErrorAsyncMethod } from '@/util/CatchError'
+import { CatchError } from '@/util/CatchError'
 
 export const SET_DIRTY = 'SET_DIRTY'
 export const SAVE_DATA = 'SAVE_DATA'
@@ -131,48 +131,56 @@ export class EncounterStore extends VuexModule {
   }
 
   @Action
+  @CatchError()
   public setEncountersDirty(): void {
     this.context.commit(SET_DIRTY)
   }
 
   @Action
+  @CatchError()
   public set_encounter_dirty(): void {
     this.context.commit(SET_DIRTY)
   }
 
   @Action
+  @CatchError()
   public saveEncounterData(): void {
     this.context.commit(SAVE_DATA)
   }
 
   @Action
+  @CatchError()
   public cloneEncounter(payload: Encounter): void {
     this.context.commit(CLONE_ENCOUNTER, payload)
   }
 
   @Action
+  @CatchError()
   public addEncounter(payload: Encounter): void {
     this.context.commit(ADD_ENCOUNTER, payload)
   }
 
   @Action
+  @CatchError()
   public delete_encounter(payload: Encounter): void {
     this.context.commit(DELETE_ENCOUNTER, payload)
   }
 
   @Action
+  @CatchError()
   public deleteEncounterPermanent(payload: Encounter): void {
     if (!payload.SaveController.IsDeleted) this.context.commit(DELETE_ENCOUNTER)
     this.context.commit(DELETE_ENCOUNTER_PERMANENT, payload)
   }
 
   @Action
+  @CatchError()
   public restore_encounter(payload: Encounter): void {
     this.context.commit(RESTORE_ENCOUNTER, payload)
   }
 
   @Action({ rawError: true })
-  @CatchErrorAsyncMethod()
+  @CatchError()
   public async loadEncounters() {
     const data = await loadData<IEncounterData>('encounters_v2.json')
     this.context.commit(LOAD_ENCOUNTERS, data)

@@ -5,7 +5,7 @@ import { INpcData } from '@/interface'
 import { loadData, saveDelta, deleteDataById, saveData } from '@/io/Data'
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import { ItemsMissingLcp, ItemsWithLcp } from '@/io/ContentEvaluator'
-import { CatchErrorAsyncMethod } from '@/util/CatchError'
+import { CatchError } from '@/util/CatchError'
 
 export const SAVE_DATA = 'SAVE_DATA'
 export const SET_DIRTY = 'SET_DIRTY'
@@ -167,48 +167,56 @@ export class NpcStore extends VuexModule {
   }
 
   @Action
+  @CatchError()
   public set_npc_dirty(): void {
     this.context.commit(SET_DIRTY)
   }
 
   @Action
+  @CatchError()
   public saveNpcData(): void {
     this.context.commit(SAVE_DATA)
   }
 
   @Action
+  @CatchError()
   public cloneNpc(payload: Npc): void {
     this.context.commit(CLONE_NPC, payload)
   }
 
   @Action
+  @CatchError()
   public addNpc(payload: Npc): void {
     this.context.commit(ADD_NPC, payload)
   }
 
   @Action
+  @CatchError()
   public delete_npc(payload: Npc): void {
     this.context.commit(DELETE_NPC, payload)
   }
 
   @Action
+  @CatchError()
   public deleteMissingNpc(payload: any): void {
     this.context.commit(DELETE_MISSING_NPC, payload)
   }
 
   @Action
+  @CatchError()
   public restore_npc(payload: Npc): void {
     this.context.commit(RESTORE_NPC, payload)
   }
 
   @Action
+  @CatchError()
   public deleteNpcPermanent(payload: Npc): void {
     if (!payload.SaveController.IsDeleted) this.context.commit(DELETE_NPC)
     this.context.commit(DELETE_NPC_PERMANENT, payload)
   }
 
   @Action({ rawError: true })
-  @CatchErrorAsyncMethod()
+  @CatchError()
   public async loadNpcs() {
     const npcData = await loadData<INpcData>('npcs_v2.json')
     this.context.commit(LOAD_NPCS, ItemsWithLcp(npcData))

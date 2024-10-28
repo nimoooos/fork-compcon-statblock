@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 /**
  * A decorator that wraps an asynchronous method with error handling.
+ * Also works with synchronous methods.
  * 
  * When applied, this decorator catches any errors thrown within the method, 
  * logs the error to the console, and triggers a notification using Vue's 
@@ -10,15 +11,15 @@ import Vue from 'vue'
  *
  * Usage:
  * ```ts
- * @CatchErrorAsyncMethod()
- * public async someAsyncMethod() {
+ * @CatchError()
+ * public async someMethod() {
  *   // Your method logic here
  * }
  * ```
  * 
  * @returns {Function} The original method wrapped with error handling.
  */
-export function CatchErrorAsyncMethod(): Function {
+export function CatchError(): Function {
     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
       const originalMethod = descriptor.value;
   
@@ -30,7 +31,6 @@ export function CatchErrorAsyncMethod(): Function {
           Vue.prototype.$notify(`${propertyKey}()`, 'error');
         }
       };
-  
       return descriptor;
     };
   }

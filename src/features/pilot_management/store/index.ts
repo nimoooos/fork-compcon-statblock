@@ -6,7 +6,7 @@ import { Pilot } from '@/class'
 import { PilotData } from '@/interface'
 import { Module, VuexModule, Action, Mutation } from 'vuex-module-decorators'
 import Vue from 'vue'
-import { CatchErrorAsyncMethod } from '@/util/CatchError'
+import { CatchError } from '@/util/CatchError'
 
 async function savePilots(pilots: Pilot[]) {
   const serialized = pilots
@@ -240,27 +240,31 @@ export class PilotManagementStore extends VuexModule {
   }
 
   @Action
+  @CatchError()
   public setPilots(payload: Pilot[]) {
     this.context.commit('SET_PILOTS', payload)
   }
 
   @Action
+  @CatchError()
   public set_pilot_dirty(): void {
     this.context.commit(SET_DIRTY)
   }
 
   @Action
+  @CatchError()
   public set_mech_dirty(): void {
     this.context.commit(SET_DIRTY)
   }
 
   @Action
+  @CatchError()
   public savePilotData(): void {
     this.context.commit(SAVE_DATA)
   }
 
   @Action({ rawError: true })
-  @CatchErrorAsyncMethod()
+  @CatchError()
   public async loadPilots() {
     const pilotData = await loadData<PilotData>('pilots_v2.json')
     const pilotGroupData = await loadData<PilotGroup>('pilot_groups_v2.json')
@@ -272,17 +276,19 @@ export class PilotManagementStore extends VuexModule {
   }
 
   @Action({ rawError: true })
-  @CatchErrorAsyncMethod()
+  @CatchError()
   public async loadCloudPilots(pilotData) {
     this.context.commit(LOAD_PILOTS, pilotData)
   }
 
   @Action
+  @CatchError()
   public clonePilot(payload: Pilot): void {
     this.context.commit(CLONE_PILOT, payload)
   }
 
   @Action
+  @CatchError()
   public addPilot(payload: Pilot): void {
     this.context.commit(ADD_PILOT, payload)
     this.context.commit(ADD_GROUP, payload.GroupController.Group)
@@ -290,52 +296,62 @@ export class PilotManagementStore extends VuexModule {
   }
 
   @Action
+  @CatchError()
   public movePilot(payload: PilotGroup[]): void {
     this.context.commit(MOVE_PILOT, payload)
   }
 
   @Action
+  @CatchError()
   public addGroup(payload: string): void {
     this.context.commit(ADD_GROUP, payload)
   }
 
   @Action
+  @CatchError()
   public moveGroup(payload: PilotGroup[]): void {
     this.context.commit(MOVE_GROUP, payload)
   }
 
   @Action
+  @CatchError()
   public delete_pilot(payload: Pilot): void {
     this.context.commit(DELETE_PILOT, payload)
   }
 
   @Action
+  @CatchError()
   public deleteMissingPilot(payload: any): void {
     this.context.commit(DELETE_MISSING_PILOT, payload)
   }
 
   @Action
+  @CatchError()
   public deletePilotPermanent(payload: Pilot): void {
     if (!payload.SaveController.IsDeleted) this.context.commit(DELETE_PILOT)
     this.context.commit(DELETE_PILOT_PERMANENT, payload)
   }
 
   @Action
+  @CatchError()
   public restore_pilot(payload: Pilot): void {
     this.context.commit(RESTORE_PILOT, payload)
   }
 
   @Action
+  @CatchError()
   public deleteGroup(payload: PilotGroup): void {
     this.context.commit(DELETE_GROUP, payload)
   }
 
   @Action
+  @CatchError()
   public setGroupName(payload: { g: PilotGroup; newName: string }): void {
     this.context.commit(SET_GROUP_NAME, payload)
   }
 
   @Action
+  @CatchError()
   public setLoadedMech(id: string): void {
     this.context.commit(SET_LOADED_MECH, id)
   }
