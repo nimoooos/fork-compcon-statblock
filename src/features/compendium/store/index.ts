@@ -45,6 +45,7 @@ import * as PlayerAction from '@/classes/Action'
 import { Background, IBackgroundData } from '@/classes/Background'
 import Vue from 'vue'
 import { Bond } from '@/classes/pilot/components/bond/Bond'
+import { CatchErrorAsyncMethod } from '@/util/CatchError'
 
 export const SET_VERSIONS = 'SET_VERSIONS'
 export const LOAD_DATA = 'LOAD_DATA'
@@ -276,6 +277,7 @@ export class CompendiumStore extends VuexModule {
   }
 
   @Action
+  @CatchErrorAsyncMethod()
   public async setPackActive(payload: { packID: string; active: boolean }): Promise<void> {
     this.context.commit(SET_PACK_ACTIVE, payload)
     await saveUserData(
@@ -285,6 +287,7 @@ export class CompendiumStore extends VuexModule {
   }
 
   @Action
+  @CatchErrorAsyncMethod()
   public async installContentPack(pack: IContentPack): Promise<void> {
     if (this.packAlreadyInstalled(pack.id)) {
       console.info(`pack ${pack.manifest.name} [${pack.id}] already exists, deleting original...`)
@@ -299,6 +302,7 @@ export class CompendiumStore extends VuexModule {
   }
 
   @Action
+  @CatchErrorAsyncMethod()
   public async deleteContentPack(packID: string): Promise<void> {
     this.context.commit(DELETE_PACK, packID)
     await saveUserData(
@@ -309,6 +313,7 @@ export class CompendiumStore extends VuexModule {
   }
 
   @Action
+  @CatchErrorAsyncMethod()
   public async loadExtraContent(): Promise<void> {
     const content = await loadUserData('extra_content.json')
     try {
@@ -319,6 +324,7 @@ export class CompendiumStore extends VuexModule {
   }
 
   @Action
+  @CatchErrorAsyncMethod()
   public async refreshExtraContent(): Promise<void> {
     await this.context.commit(CLEAR_PACKS)
 

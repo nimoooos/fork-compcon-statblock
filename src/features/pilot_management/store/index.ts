@@ -6,6 +6,7 @@ import { Pilot } from '@/class'
 import { PilotData } from '@/interface'
 import { Module, VuexModule, Action, Mutation } from 'vuex-module-decorators'
 import Vue from 'vue'
+import { CatchErrorAsyncMethod } from '@/util/CatchError'
 
 async function savePilots(pilots: Pilot[]) {
   const serialized = pilots
@@ -259,6 +260,7 @@ export class PilotManagementStore extends VuexModule {
   }
 
   @Action({ rawError: true })
+  @CatchErrorAsyncMethod()
   public async loadPilots() {
     const pilotData = await loadData<PilotData>('pilots_v2.json')
     const pilotGroupData = await loadData<PilotGroup>('pilot_groups_v2.json')
@@ -270,6 +272,7 @@ export class PilotManagementStore extends VuexModule {
   }
 
   @Action({ rawError: true })
+  @CatchErrorAsyncMethod()
   public async loadCloudPilots(pilotData) {
     this.context.commit(LOAD_PILOTS, pilotData)
   }

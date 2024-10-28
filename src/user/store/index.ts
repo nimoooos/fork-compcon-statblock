@@ -5,6 +5,7 @@ import { AutoSyncAll, AutoSyncRemotes } from '@/cloud/item_sync'
 import { SyncLCPs } from '@/cloud/lcp_sync'
 import * as Client from '../index'
 import _ from 'lodash'
+import { CatchErrorAsyncMethod } from '@/util/CatchError'
 
 export const SET_LOGGED_IN = 'SET_LOGGED_IN'
 export const SET_AUTH_STATUS = 'SET_AUTH_STATUS'
@@ -75,6 +76,7 @@ export class UserStore extends VuexModule {
   }
 
   @Action({ rawError: true })
+  @CatchErrorAsyncMethod()
   public async setAws(payload: { cognitoUser: any }): Promise<void> {
     const syncedUser = await Sync.GetCloudProfile(payload.cognitoUser.user_id)
 
@@ -96,12 +98,14 @@ export class UserStore extends VuexModule {
   }
 
   @Action({ rawError: true })
+  @CatchErrorAsyncMethod()
   public async loadUser(): Promise<void> {
     const localdata = await Client.getLocalProfile()
     this.context.commit(LOAD_USER_PROFILE, localdata)
   }
 
   @Action({ rawError: true })
+  @CatchErrorAsyncMethod()
   public async updateUserData(): Promise<void> {
     console.info('Updating User Info')
     Sync.UpdateUserData(this.UserProfile)

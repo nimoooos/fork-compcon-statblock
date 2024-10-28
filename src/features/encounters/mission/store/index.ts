@@ -4,6 +4,7 @@ import { Mission, ActiveMission } from '@/class'
 import { IMissionData, IActiveMissionData } from '@/interface'
 import { loadData, saveDelta, deleteDataById, saveData } from '@/io/Data'
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
+import { CatchErrorAsyncMethod } from '@/util/CatchError'
 
 export const SAVE_DATA = 'SAVE_DATA'
 export const SET_DIRTY = 'SET_DIRTY'
@@ -279,12 +280,14 @@ export class MissionStore extends VuexModule {
   }
 
   @Action({ rawError: true })
+  @CatchErrorAsyncMethod()
   public async loadMissions() {
     const missionData = await loadData<IMissionData>('missions_v2.json')
     this.context.commit(LOAD_MISSIONS, missionData)
   }
 
   @Action({ rawError: true })
+  @CatchErrorAsyncMethod()
   public async loadActiveMissions() {
     const missionData = await loadData<IActiveMissionData>('active_missions_v2.json')
     this.context.commit(LOAD_ACTIVE_MISSIONS, missionData)

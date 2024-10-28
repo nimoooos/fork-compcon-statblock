@@ -5,6 +5,7 @@ import { INpcData } from '@/interface'
 import { loadData, saveDelta, deleteDataById, saveData } from '@/io/Data'
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import { ItemsMissingLcp, ItemsWithLcp } from '@/io/ContentEvaluator'
+import { CatchErrorAsyncMethod } from '@/util/CatchError'
 
 export const SAVE_DATA = 'SAVE_DATA'
 export const SET_DIRTY = 'SET_DIRTY'
@@ -207,6 +208,7 @@ export class NpcStore extends VuexModule {
   }
 
   @Action({ rawError: true })
+  @CatchErrorAsyncMethod()
   public async loadNpcs() {
     const npcData = await loadData<INpcData>('npcs_v2.json')
     this.context.commit(LOAD_NPCS, ItemsWithLcp(npcData))
