@@ -9,14 +9,14 @@
     />
     <v-row no-gutters>
       <v-col cols="auto">
-        <cc-short-string-editor large before @set="mech.Name = $event">
+        <cc-short-string-editor playerMech color="light" @set="mech.Name = $event">
           <cc-title
             :small="small"
             :large="!small && mech.Name.length < 31"
             :color="color"
-            class="px-3 ml-n6"
+            class="pl-12"
           >
-            {{ mech.Name }}&emsp;
+            &nbsp;{{ mech.Name }}&emsp;
           </cc-title>
         </cc-short-string-editor>
         <div :class="`mt-n${small ? '3' : '6'}`">

@@ -2,9 +2,11 @@
   <v-fade-transition leave-absolute>
     <div v-if="!editing" key="str" :class="{ 'd-inline': inline }">
       <slot />
-      <v-icon :dark="before" small :class="`fadeSelect ${before ? 'mt-n12' : ''}`" @click="edit()">
-        mdi-circle-edit-outline
-      </v-icon>
+      <v-btn outlined :x-small="!large&!playerMech" :color="color" :class="`fadeSelect ${boxModel} ${playerMech ? 'playerMech' : ''} ${large?'mt-n10':''}`" @click="edit()">
+        <v-icon :small="!large">
+          mdi-circle-edit-outline
+        </v-icon>
+      </v-btn>
     </div>
     <div v-else key="editname" :class="{ 'd-inline': inline }">
       <v-text-field
@@ -31,12 +33,16 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export default class CCShortStringEditor extends Vue {
   @Prop({ type: String, required: false })
   readonly placeholder?: string
+  @Prop({ type: String, required: false, default: '' })
+  color?: string
+  @Prop({ type: String, required: false, default: '' })
+  boxModel?: string
   @Prop({ type: Boolean, required: false })
   readonly inline?: boolean
   @Prop({ type: Boolean })
   readonly large?: boolean
   @Prop({ type: Boolean })
-  readonly before?: boolean
+  readonly playerMech?: boolean
 
   newStr = ''
   editing = false
@@ -81,6 +87,9 @@ export default class CCShortStringEditor extends Vue {
 .label {
   font-size: 1em;
   font-weight: bold;
+}
+.playerMech {
+  margin-top: -6rem;
 }
 </style>
 

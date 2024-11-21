@@ -50,7 +50,9 @@
         >
           <template v-slot:prepend>
             <cc-tooltip simple content="Generate Random Name">
-              <v-icon color="secondary" @click="randomName()">mdi-dice-multiple</v-icon>
+              <v-btn small outlined color="secondary" class="fadeSelect my-n2">
+                <v-icon color="light" @click="randomName()">mdi-dice-multiple</v-icon>
+              </v-btn>
             </cc-tooltip>
           </template>
           <template v-slot:append-outer>
@@ -65,7 +67,9 @@
         <v-text-field v-model="pilot.Callsign" outlined label="Callsign" hide-details class="my-1">
           <template v-slot:prepend>
             <cc-tooltip simple content="Generate Random Callsign">
-              <v-icon color="secondary" @click="randomCallsign()">mdi-dice-multiple</v-icon>
+              <v-btn small outlined color="secondary" class="fadeSelect my-n2">
+                <v-icon color="light" @click="randomCallsign()">mdi-dice-multiple</v-icon>
+              </v-btn>
             </cc-tooltip>
           </template>
           <template v-slot:append-outer>
@@ -86,7 +90,7 @@
         >
           <template v-slot:prepend>
             <cc-tooltip simple content="Select Predefined Background">
-              <cc-background-selector @select="$emit('set', { attr: 'Background', val: $event })" />
+              <cc-background-selector small @select="$emit('set', { attr: 'Background', val: $event })" />
             </cc-tooltip>
           </template>
           <template v-slot:append-outer>

@@ -82,9 +82,11 @@
                   bottom
                   content="Edit License Level"
                 >
-                  <v-icon small dark class="fadeSelect" @click="$refs.levelEdit.show()">
+                <v-btn x-small outlined color="grey lighten-3" class="fadeSelect" @click="$refs.levelEdit.show()">
+                  <v-icon small>
                     mdi-circle-edit-outline
                   </v-icon>
+                </v-btn>
                 </cc-tooltip>
               </div>
               <div class="heading h1 mb-n4 py-1" style="font-size: 75px">
@@ -151,7 +153,10 @@
               <div class="stat-text white--text mt-n2 mb-n1">
                 <v-dialog max-width="1200px">
                   <template v-slot:activator="{ on }">
-                    <v-icon dark class="fadeSelect" v-on="on">mdi-card-bulleted-outline</v-icon>
+                    <v-btn x-small outlined color="grey lighten-3" class="fadeSelect" v-on="on">
+                      <v-icon>mdi-card-bulleted-outline</v-icon>
+                      IDENT Record
+                    </v-btn>
                   </template>
                   <v-sheet class="transparent">
                     <pilot-registration-card :pilot="pilot" pilot-ready />

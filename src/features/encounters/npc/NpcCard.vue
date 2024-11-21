@@ -16,7 +16,7 @@
             </cc-short-string-editor>
           </div>
           <div class="flavor-text mt-n6 ml-2">
-            <cc-short-string-editor large :placeholder="npc.Subtitle" @set="npc.Subtitle = $event">
+            <cc-short-string-editor boxModel="mt-n3 ml-2" :placeholder="npc.Subtitle" @set="npc.Subtitle = $event">
               <b v-if="npc.Subtitle" class="heading-block stark--text" v-html="npc.Subtitle" />
               <i v-else class="heading-block subtle--text" v-html="'Add GM Summary'" />
             </cc-short-string-editor>
